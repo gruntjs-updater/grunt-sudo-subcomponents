@@ -9,7 +9,7 @@
 'use strict';
 
 module.exports = function(grunt) {
-  grunt.registerMultiTask('sudo_subcomponents', 'The best Grunt plugin ever.', function() {
+  grunt.registerMultiTask('sudo_subcomponents', 'Grunt Plugin to trigger tasks of "sudo subcomponents".', function() {
     var remote = function (cmd, args, cwd, done) {
       grunt.log.ok('Command running "'+ cwd+ '/' + cmd+ ' ' +args.join(', ') +'" ... please wait');
       var spawn = require('superspawn').spawn;
@@ -17,6 +17,7 @@ module.exports = function(grunt) {
         if (err) {
           grunt.fail.fatal(err);
           done();
+          return false;
         }
         grunt.log.writeln(data);
         grunt.log.ok(cmd+' '+cwd+' finished');
