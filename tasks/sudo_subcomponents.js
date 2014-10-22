@@ -11,14 +11,15 @@
 module.exports = function(grunt) {
   grunt.registerMultiTask('sudo_subcomponents', 'The best Grunt plugin ever.', function() {
     var remote = function (cmd, args, cwd, done) {
-      grunt.log.ok('Command running ... please wait');
+      grunt.log.ok('Command running "'+ cwd+ '/' + cmd+ ' ' +args.join(', ') +'" ... please wait');
       var spawn = require('superspawn').spawn;
       var remote = spawn(cmd, args, {cwd: cwd}, function (err, data) {
         if (err) {
           grunt.fail.fatal(err);
           done();
         }
-        grunt.log.ok(cmd+' '+cwd+' finished ('+data+')');
+        grunt.log.writeln(data);
+        grunt.log.ok(cmd+' '+cwd+' finished');
         done();
       });
     };
