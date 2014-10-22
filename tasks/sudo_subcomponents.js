@@ -9,23 +9,15 @@
 'use strict';
 
 module.exports = function(grunt) {
-
   grunt.registerMultiTask('sudo_subcomponents', 'The best Grunt plugin ever.', function() {
     var remote = function (cmd, args, cwd, done) {
-      var spawn  = require('child_process').spawn,
-          remote = spawn(cmd, args, {cwd: cwd});
-
-      remote.stdout.on('data', function (data) {
-        grunt.log.write(""+data);
-      });
-      remote.stderr.on('data', function (data) {
-        console.error(""+data);
-      });
-      remote.on('close', function (code) {
-        if (code !== 0) {
-          grunt.fail.fatal(code);
+      var spawn = require('superspawn').spawn;
+      var remote = spawn('grunt', [cmd], {cwd: cwd}, function (err, data) {
+        if (err) {
+          console.error(err);
+          done();
         }
-        grunt.log.ok(cmd+' '+args.join(', ')+' '+cwd+' finished ('+code+')');
+        grunt.log.ok(cmd+' '+cwd+' finished ('+data+')');
         done();
       });
     };
