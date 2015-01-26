@@ -11,11 +11,12 @@
 module.exports = function(grunt) {
   grunt.registerMultiTask('sudo_subcomponents', 'Grunt Plugin to trigger tasks of "sudo subcomponents".', function() {
     var remote = function (cmd, args, cwd, done) {
-      grunt.log.ok('Command running "'+ cwd + cmd+ ' ' +args.join(', '));
+      grunt.log.ok('Command running "'+ cwd +' '+ cmd+ ' ' +args.join(', '));
       var spawn = require('cross-spawn').spawn;
       var command = spawn(cmd, args, {cwd: cwd});
 
       command.stderr.on('data', function (data) {
+        console.log(data);
         grunt.fail.fatal(data);
         done();
       });
