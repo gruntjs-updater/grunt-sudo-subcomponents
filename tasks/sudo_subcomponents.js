@@ -13,16 +13,15 @@ module.exports = function(grunt) {
     var remote = function (cmd, args, cwd, done) {
       grunt.log.ok('Command running "'+ cwd +' '+ cmd+ ' ' +args.join(', '));
       var spawn = require('cross-spawn').spawn;
+      var util = require('util');
       var command = spawn(cmd, args, {cwd: cwd});
 
       command.stderr.on('data', function (data) {
-        console.log(data);
-        grunt.fail.fatal(data);
-        done();
+        util.print(data);
       });
 
       command.stdout.on('data', function (data) {
-        grunt.log.writeln(data);
+        util.print(data);
       });
 
       command.on('close', function (code) {

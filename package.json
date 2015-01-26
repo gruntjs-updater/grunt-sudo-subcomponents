@@ -1,7 +1,7 @@
 {
   "name": "grunt-sudo-subcomponents",
   "description": "Grunt Plugin to trigger tasks of 'sudo subcomponents'.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "homepage": "https://github.com/wirsich/grunt-sudo-subcomponents",
   "author": {
     "name": "Stephan Wirsich",
