@@ -1,7 +1,7 @@
 {
   "name": "grunt-sudo-subcomponents",
   "description": "Grunt Plugin to trigger tasks of 'sudo subcomponents'.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://github.com/wirsich/grunt-sudo-subcomponents",
   "author": {
     "name": "Stephan Wirsich",
@@ -39,6 +39,6 @@
     "gruntplugin"
   ],
   "dependencies": {
-    "superspawn": "^0.1.0"
+    "cross-spawn": "^0.2.3"
   }
 }
